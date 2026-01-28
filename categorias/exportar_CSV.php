@@ -1,20 +1,19 @@
-﻿<?php
+<?php
+ini_set('display_errors', '0');
+ini_set('display_startup_errors', '0');
+error_reporting(0);
+include_once "../config/database.php";
+include_once "../objects/categorias.php";
 
-include_once '../config/database.php';
-include_once '../objects/categorias.php';
-
-// Gerar CSV
 $database = new Database();
 $db = $database->getConnection();
+
 $categoria = new Categoria($db);
-$csv = $categoria->exportar_CSV();
 
-// Headers FORÇADOS
-header('Content-Type: application/octet-stream');
-header('Content-Disposition: attachment; filename="categorias.csv"');
-header('Content-Length: ' . strlen($csv));
-header('Pragma: no-cache');
-header('Expires: 0');
+header("Content-Type: text/csv; charset=UTF-8");
+header("Content-Disposition: attachment; filename=categorias.csv");
+header("Pragma: no-cache");
+header("Expires: 0");
 
-echo $csv;
+echo $categoria->exportar_CSV();
 exit;
