@@ -1,0 +1,4 @@
+.vscode/
+mysql-data/
+docker-data/
+*.cache
