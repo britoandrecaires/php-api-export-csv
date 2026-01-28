@@ -23,12 +23,13 @@ A aplicação segue uma arquitetura simples baseada na separação de responsabi
 ```
 API/
 ├── categorias/
-│   ├── index.html
-│   └── exportar_CSV.php
+│   ├── exportar_CSV.php
+│   └── listar.php
 ├── config/
 │   └── database.php
 ├── objects/
 │   └── categorias.php
+├── produtos/
 ├── docker-compose.yml
 ├── Dockerfile
 ├── README.md
@@ -36,6 +37,13 @@ API/
 ```
 
 ---
+
+## Frontend
+
+Este backend é consumido por uma aplicação React.
+
+Frontend:
+https://github.com/britoandrecaires/react-api-rest-categorias
 
 ## Descrição dos Componentes
 
@@ -49,22 +57,26 @@ config/database.php
 Contém a classe responsável pela ligação à base de dados MySQL através de PDO.
 
 objects/categorias.php  
-Implementa a classe Categoria, responsável por executar as queries à base de dados e gerar o conteúdo no formato CSV.
+Implementa a classe Categoria, responsável por executar as queries à base de dados, gerar o conteúdo no formato CSV e listar categorias em JSON.
 
 categorias/exportar_CSV.php  
 Endpoint que realiza a exportação dos dados e força o download do ficheiro CSV.
 
-categorias/index.html  
-Página simples que disponibiliza um botão para iniciar o download do ficheiro CSV.
+categorias/listar.php  
+Endpoint que devolve a listagem de categorias em formato JSON, permitindo integração com aplicações externas ou frontends modernos.
+
+produtos/  
+Pasta reservada para futura implementação de endpoints relacionados com produtos.
 
 ---
 
 ## Funcionalidades Implementadas
 
 - Ligação à base de dados MySQL através de PDO
-- Consulta da tabela categorias
+- Consulta da tabela categorias (CSV e JSON)
 - Geração dinâmica de ficheiro CSV com separador ;
 - Download automático do ficheiro CSV através do browser
+- Endpoint para listagem de categorias em JSON (para consumo por aplicações externas)
 - Compatibilidade com Microsoft Excel
 
 ---
