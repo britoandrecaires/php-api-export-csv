@@ -9,6 +9,12 @@ class Categoria {
     public function __construct($db) {
         $this->conn = $db;
     }
+    public function listar() {
+    $query = "SELECT id, nome, descricao, criacao FROM {$this->table_name}";
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+    return $stmt;
+    }
 
     // Exporta categorias para CSV (separado por ;)
     public function exportar_CSV() {
@@ -29,5 +35,6 @@ class Categoria {
 
         return $output;
     }
+ 
 }
 ?>

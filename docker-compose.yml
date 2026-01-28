@@ -4,8 +4,11 @@ services:
     build: .
     ports:
       - "8080:80"
+    volumes:
+      - .:/var/www/html
     depends_on:
       - mysql
+
 
   mysql:
     image: mysql:8.0
